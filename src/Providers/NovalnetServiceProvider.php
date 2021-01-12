@@ -111,6 +111,13 @@ class NovalnetServiceProvider extends ServiceProvider
                 AfterBasketItemAdd::class,
                 AfterBasketCreate::class
             ]);
+         $payContainer->register('plenty_novalnet::NOVALNET_PAYPAL', NovalnetPaypalPaymentMethod::class,
+            [
+                AfterBasketChanged::class,
+                AfterBasketItemAdd::class,
+                AfterBasketCreate::class
+            ]);
+        
         
         // Listen for the event that gets the payment method content
         $eventDispatcher->listen(GetPaymentMethodContent::class,

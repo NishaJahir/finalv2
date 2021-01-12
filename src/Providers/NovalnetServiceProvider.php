@@ -42,8 +42,8 @@ use Plenty\Modules\Document\Models\Document;
 use Novalnet\Methods\NovalnetCcPaymentMethod;
 use Novalnet\Methods\NovalnetSepaPaymentMethod;
 use Novalnet\Methods\NovalnetInvoicePaymentMethod;
-use Novalnet\Methods\NovalnetInsbyInvPaymentMethod;
 use Novalnet\Methods\NovalnetPaypalPaymentMethod;
+use Novalnet\Methods\NovalnetInsbyInvPaymentMethod;
 
 use Plenty\Modules\EventProcedures\Services\Entries\ProcedureEntry;
 use Plenty\Modules\EventProcedures\Services\EventProceduresService;

@@ -197,7 +197,7 @@ class NovalnetInsbyInvPaymentMethod extends PaymentMethodBaseService
     {
         /** @var Application $app */
         $app = pluginApp(Application::class);
-        $logoUrl = $app->getUrlPath('novalnet') .'/images/logos/novalnet_invoice_backend_icon.svg';
+        $logoUrl = $app->getUrlPath('novalnet') .'/images/logos/novalnet_instalment_invoice_backend_icon.svg';
         return $logoUrl;
     }
 }

@@ -57,6 +57,7 @@ class CreateAndUpdatePaymentMethods
         $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_SEPA', 'Novalnet Direct Debit SEPA');
         $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_INVOICE', 'Novalnet Invoice');
         $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_PAYPAL', 'Novalnet PayPal');
+        $this->createNovalnetPaymentMethodByPaymentKey('NOVALNET_INSTALMENT_INVOICE', 'Novalnet Instalment by Invoice');
     }
 
     /**

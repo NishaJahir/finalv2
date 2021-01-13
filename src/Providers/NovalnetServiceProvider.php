@@ -43,7 +43,7 @@ use Novalnet\Methods\NovalnetCcPaymentMethod;
 use Novalnet\Methods\NovalnetSepaPaymentMethod;
 use Novalnet\Methods\NovalnetInvoicePaymentMethod;
 use Novalnet\Methods\NovalnetPaypalPaymentMethod;
-use Novalnet\Methods\NovalnetInstalmentbyInvoicePaymentMethod;
+use Novalnet\Methods\NovalnetInstalmentInvoice;
 
 use Plenty\Modules\EventProcedures\Services\Entries\ProcedureEntry;
 use Plenty\Modules\EventProcedures\Services\EventProceduresService;
@@ -117,7 +117,7 @@ class NovalnetServiceProvider extends ServiceProvider
                 AfterBasketItemAdd::class,
                 AfterBasketCreate::class
             ]);
-        $payContainer->register('plenty_novalnet::NOVALNET_INSTALMENT_INVOICE', NovalnetInstalmentbyInvoicePaymentMethod::class,
+        $payContainer->register('plenty_novalnet::NOVALNET_INSTALMENT_INVOICE', NovalnetInstalmentInvoice::class,
             [
                 AfterBasketChanged::class,
                 AfterBasketItemAdd::class,

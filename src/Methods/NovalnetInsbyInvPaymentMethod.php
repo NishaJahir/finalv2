@@ -77,5 +77,27 @@ class NovalnetInsbyInvPaymentMethod extends PaymentMethodBaseService
     {
 		return true;
     }
+	
+    /**
+     * Get the name of the payment method. The name can be entered in the configuration.
+     *
+     * @return string
+     */
+    public function getName(string $lang = 'de'):string
+    {
+        $paymentName = trim($this->config->get('Novalnet.novalnet_instalment_invoice_payment_name'));
+        return ($paymentName ? $paymentName : $this->paymentHelper->getTranslatedText('novalnet_instalment_invoice'));
+    }
+
+    /**
+     * Returns a fee amount for this payment method.
+     *
+     * @return float
+     */
+    public function getFee(): float
+    {
+        return 0.00;
+    }
+
 
 }

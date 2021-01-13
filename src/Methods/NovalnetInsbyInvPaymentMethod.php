@@ -24,10 +24,10 @@ use Plenty\Modules\Basket\Models\Basket;
 use Plenty\Modules\Basket\Contracts\BasketRepositoryContract;
 
 /**
- * Class NovalnetInsbyInvPaymentMethod
+ * Class NovalnetInstalmentbyInvoicePaymentMethod
  * @package Novalnet\Methods
  */
-class NovalnetInsbyInvPaymentMethod extends PaymentMethodBaseService
+class NovalnetInstalmentbyInvoicePaymentMethod extends PaymentMethodBaseService
 {
     /**
      * @var ConfigRepository

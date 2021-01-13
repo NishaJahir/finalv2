@@ -24,10 +24,58 @@ use Plenty\Modules\Basket\Models\Basket;
 use Plenty\Modules\Basket\Contracts\BasketRepositoryContract;
 
 /**
- * Class NovalnetInstalmentbyInvoicePaymentMethod
+ * Class NovalnetInsbyInvPaymentMethod
  * @package Novalnet\Methods
  */
 class NovalnetInsbyInvPaymentMethod extends PaymentMethodBaseService
 {
+    /**
+     * @var ConfigRepository
+     */
+    private $config;
+
+    /**
+     * @var PaymentHelper
+     */
+    private $paymentHelper;
     
+    /**
+     * @var Basket
+     */
+    private $basket;
+    
+     /**
+     * @var PaymentService
+     */
+    private $paymentService;
+
+    /**
+     * NovalnetInsbyInvPaymentMethod constructor.
+     *
+     * @param ConfigRepository $config
+     * @param PaymentHelper $paymentHelper
+     * @param BasketRepositoryContract $basket
+     */
+    public function __construct(ConfigRepository $config,
+                                PaymentHelper $paymentHelper,
+                                BasketRepositoryContract $basket,
+                                PaymentService $paymentService
+                               )
+    {
+        $this->config = $config;
+        $this->paymentHelper = $paymentHelper;
+        $this->basket = $basket->load();
+        $this->paymentService = $paymentService;
+    }
+
+    /**
+     * Check the configuration if the payment method is active
+     *
+     * @return bool
+     */
+    public function isActive():bool
+    {
+		return true;
+    }
+
 }

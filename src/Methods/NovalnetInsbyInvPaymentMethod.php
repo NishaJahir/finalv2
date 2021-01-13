@@ -75,7 +75,17 @@ class NovalnetInsbyInvPaymentMethod extends PaymentMethodBaseService
      */
     public function isActive():bool
     {
-		return true;
+	if ($this->config->get('Novalnet.novalnet_instalment_invoice_payment_active') == 'true') {
+            $instalmentPaymentMimimumAmount = true;
+            $minimumAmount = trim($this->config->get('Novalnet.novalnet_instalment_invoice_min_amount'));
+            if (!empty($minimumAmount) && is_numeric($minimumAmount) && $minimumAmount < 1998) {
+                $instalmentPaymentMimimumAmount = false;
+            }
+            
+
+            return (bool)($this->paymentService->isPaymentActive('novalnet_instalment_invoice') && $instalmentPaymentMimimumAmount);
+        }
+        return false;
     }
 	
     /**
@@ -159,6 +169,29 @@ class NovalnetInsbyInvPaymentMethod extends PaymentMethodBaseService
     public function getBackendName(string $lang = 'de'):string
     {
         return 'Novalnet Instalment by Invoice';
+    }
+	
+   /**
+     * Check if this payment method can handle subscriptions
+     *
+     * @return bool
+     */
+    public function canHandleSubscriptions():bool
+    {
+        return false;
+    }
+
+    /**
+     * Get icon for the backend
+     *
+     * @return string
+     */
+    public function getBackendIcon():string 
+    {
+        /** @var Application $app */
+        $app = pluginApp(Application::class);
+        $logoUrl = $app->getUrlPath('novalnet') .'/images/logos/novalnet_instalment_invoice_backend_icon.svg';
+        return $logoUrl;
     }
 
 }

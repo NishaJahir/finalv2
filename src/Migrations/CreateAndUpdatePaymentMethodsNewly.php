@@ -22,7 +22,7 @@ use Plenty\Plugin\Log\Loggable;
  * Class UpgradePaymentMethods
  * @package Novalnet\Migrations
  */
-class CreateAndUpdatePaymentMethods
+class CreateAndUpdatePaymentMethodsNewly
 {
     use Loggable;
     /**

@@ -16,6 +16,7 @@ namespace Novalnet\Migrations;
 
 use Plenty\Modules\Payment\Method\Contracts\PaymentMethodRepositoryContract;
 use Novalnet\Helper\PaymentHelper;
+use Plenty\Plugin\Log\Loggable;
 
 /**
  * Class UpgradePaymentMethods
@@ -23,6 +24,7 @@ use Novalnet\Helper\PaymentHelper;
  */
 class CreateAndUpdatePaymentMethods
 {
+    use Loggable;
     /**
      * @var PaymentMethodRepositoryContract
      */
@@ -69,12 +71,15 @@ class CreateAndUpdatePaymentMethods
     private function createNovalnetPaymentMethodByPaymentKey($paymentKey, $paymentName)
     {
         $payment_data = $this->paymentHelper->getPaymentMethodByKey($paymentKey);
+      $this->getLogger(__METHOD__)->error('payment key', $paymentKey);
+     $this->getLogger(__METHOD__)->error('payment Name', $paymentName);
         if ($payment_data == 'no_paymentmethod_found')
         {
             $paymentMethodData = ['pluginKey'  => 'plenty_novalnet',
                                 'paymentKey' => $paymentKey,
                                 'paymentName' => $paymentName
                                ];
+         $this->getLogger(__METHOD__)->error('payment data', $paymentMethodData);
             $this->paymentMethodRepository->createPaymentMethod($paymentMethodData);
         } elseif ($payment_data[1] == $paymentKey && !in_array ($payment_data[2], ['Novalnet Credit/Debit Cards', 'Novalnet Direct Debit SEPA', 'Novalnet Invoice', 'Novalnet PayPal']) ) {
             $paymentMethodData = ['pluginKey'  => 'Novalnet',
@@ -82,6 +87,7 @@ class CreateAndUpdatePaymentMethods
                                 'paymentName' => $paymentName,
                                 'id' => $payment_data[0]
                                ];
+         $this->getLogger(__METHOD__)->error('update payment data', $paymentMethodData);
             $this->paymentMethodRepository->updateName($paymentMethodData);
         }
     }

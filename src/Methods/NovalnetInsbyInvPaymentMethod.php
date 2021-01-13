@@ -98,6 +98,57 @@ class NovalnetInsbyInvPaymentMethod extends PaymentMethodBaseService
     {
         return 0.00;
     }
+	
+    /**
+     * Retrieves the description of the payment. The description can be entered in the configuration.
+     *
+     * @return string
+     */
+    public function getDescription(string $lang = 'de'):string
+    {
+        $description = trim($this->config->get('Novalnet.novalnet_instalment_invoice_description'));
+        return ($description ? $description : $this->paymentHelper->getTranslatedText('invoicePrepaymentPaymentDescription'));
+    }
+
+    /**
+     * Check if it is allowed to switch to this payment method
+     *
+     * @return bool
+     */
+    public function isSwitchableTo(): bool
+    {
+        return false;
+    }
+
+    /**
+     * Check if it is allowed to switch from this payment method
+     *
+     * @return bool
+     */
+    public function isSwitchableFrom(): bool
+    {
+        return false;
+    }
+
+    /**
+     * Check if this payment method should be searchable in the backend
+     *
+     * @return bool
+     */
+    public function isBackendSearchable():bool
+    {
+        return true;
+    }
+
+    /**
+     * Check if this payment method should be active in the backend
+     *
+     * @return bool
+     */
+    public function isBackendActive():bool
+    {
+        return false;
+    }
 
 
 }

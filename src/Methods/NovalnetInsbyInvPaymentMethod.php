@@ -83,7 +83,7 @@ class NovalnetInsbyInvPaymentMethod extends PaymentMethodBaseService
             }
             
 
-            return (bool)($this->paymentService->isPaymentActive('novalnet_instalment_invoice') && $instalmentPaymentMimimumAmount);
+            return (bool)($this->paymentService->isPaymentActive($this->basket, 'novalnet_instalment_invoice') && $instalmentPaymentMimimumAmount);
         }
         return false;
     }
